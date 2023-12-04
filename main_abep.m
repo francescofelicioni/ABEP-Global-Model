@@ -9,7 +9,7 @@
 % Modified the 1/3/2022 by S. Dalle Fabbriche, University of Bologna      %
 % Based on F. Bosi, PhD Thesis University of Padova                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [vars_out,dens_out]= main_abep(Pw,flag_sim_mode,varargin)
+function [vars_out,dens_out]= main_abep(Pw,flag_sim_mode,Gas_name,varargin)
 
 global g q Kb B amu emass hP c_light eps0   
 global k_0 atomic_mass Conc Rates R_const
@@ -25,7 +25,6 @@ global Te flag_electronegative
 
 
 %% INPUT DATA
-Gas_name = 'Mars';               % input: write gas name 'Air','Mars'
 addpath('./gas_data/');
 load(strcat(Gas_name,'.mat'));
 
@@ -34,8 +33,8 @@ flag_diffusion = 2;             % 0) LJ Mixture averaged ion diffusivity, 1) LJ 
 flag_atm = 'mars';              % 'mars','earth' --> choose planet atmosphere
 
 % Geometry and init of parameters
-L = 0.13;                       % [m] Length 
-R = 0.003;                     % [m] Chamber radius
+L = 2;                       % [m] Length 
+R = 0.5;                     % [m] Chamber radius
 B = 1500e-4;                    % magnetic field [T]
 %Pw= 400;
 h_data = gas{5,2}; 

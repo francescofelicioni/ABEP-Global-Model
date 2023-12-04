@@ -9,7 +9,7 @@ clear all
 % end
 % addpath('./gas_data/');
 clc
-flag_sim_mode ='inflow';        % 'inflow' for a se mass inflow, 'height' for the atmospheric quantities
+flag_sim_mode ='height';        % 'inflow' for a se mass inflow, 'height' for the atmospheric quantities
 
 switch flag_sim_mode
     case 'height'
@@ -22,7 +22,7 @@ switch flag_sim_mode
         
         
         %% Function of the altitude 
-        for alt=19
+        for alt=12
         Pw = 1000; % choose deposited power [w] (IMPLEMENT PRODUCT P_ANETNNA EFF_ANTENNA)
         h_data = gas{5,2}; 
         mdot=0;
@@ -30,7 +30,7 @@ switch flag_sim_mode
         Thrust=[]; Isp=[]; Eta=[]; Ne=[]; Te=[]; Pres=[]; Iz_ratio=[];
         for jdx = 1:length(H)
             h=H(jdx);
-            [vars_out,dens_out] = main_abep(Pw,flag_sim_mode,h);
+            [vars_out,dens_out] = main_abep(Pw,flag_sim_mode,Gas_name,h);
             thrust   = vars_out(1);
             ne = dens_out(2);
             Thrust   = [Thrust; thrust];
@@ -52,7 +52,7 @@ switch flag_sim_mode
 
         Thrust=[]; Isp=[]; Eta=[]; Ne=[]; Te=[]; Pres=[]; Iz_ratio=[];
 
-        [vars_out,dens_out] = main_abep(Pw,flag_sim_mode,mdot);
+        [vars_out,dens_out] = main_abep(Pw,flag_sim_mode,Gas_name,mdot);
         thrust   = vars_out(1);
         ne = dens_out(2);
         Thrust   = [Thrust; thrust];
